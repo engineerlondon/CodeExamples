@@ -1,9 +1,7 @@
-using System;
-using System.Linq;
+using CodeExamples.Searching;
 using Xunit;
-using CodeExamples;
 
-namespace CodeExamplesTests
+namespace CodeExamplesTests.Searching
 {
     public class BinarySearchTests
     {

@@ -1,20 +1,22 @@
-﻿namespace CodeExamples
-{
-    public class QuickSort
-    {
-        private int[] _arr;
+﻿using System;
 
-        public QuickSort(int[] arr)
+namespace CodeExamples.Sorting
+{
+    public class QuickSortString
+    {
+        private readonly string[] _arr;
+
+        public QuickSortString(string[] arr)
         {
             _arr = arr;
         }
 
-        public int[] Sort()
+        public string[] Sort()
         {
             return Sort(0, _arr.Length - 1);
         }
 
-        private int[] Sort(int left, int right)
+        private string[] Sort(int left, int right)
         {
             int index = Partition(left, right);
             if (left < index - 1)
@@ -26,13 +28,13 @@
 
         private int Partition(int left, int right)
         {
-            int pivot = _arr[(left + right) / 2];
+            string pivot = _arr[(right + left) / 2];
 
             while (left <= right)
             {
-                while (_arr[left] < pivot)
+                while (String.Compare(_arr[left], pivot, StringComparison.OrdinalIgnoreCase) < 0)
                     left++;
-                while (_arr[right] > pivot)
+                while (String.Compare(_arr[right], pivot, StringComparison.OrdinalIgnoreCase) > 0)
                     right--;
 
                 if (left <= right)
@@ -46,8 +48,11 @@
             return left;
         }
 
+        public int swapCount = 0;
+
         private void Swap(int left, int right)
         {
+            swapCount++;
             if (left == right)
                 return;
             var temp = _arr[left];

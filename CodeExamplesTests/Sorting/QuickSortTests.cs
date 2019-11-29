@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
+using CodeExamples.Sorting;
 using Xunit;
-using CodeExamples;
 
-namespace CodeExamplesTests
+namespace CodeExamplesTests.Sorting
 {
     public class QuickSortTests
     {
@@ -20,13 +20,22 @@ namespace CodeExamplesTests
         }
 
         [Fact]
+        public void QuickSortSimplesStringArrayTest()
+        {
+            string[] expected = { "bob", "Carol", "Clair", "Jim", "Zak" };
+            string[] arr = { "Zak", "Clair", "Jim", "Carol", "bob" };
+
+            var quickSort = new QuickSortString(arr);
+
+            string[] result = quickSort.Sort();
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
         public void QuickSortLargeRandomArrayTest()
         {
-            var countOfSort = 0;
-            var numberOfTries = 100;
-
             int Min = int.MinValue;
-            int Max = int.MinValue;
+            int Max = int.MaxValue;
             Random randNum = new Random();
             int[] arr = Enumerable
                 .Repeat(0, 100000)
@@ -40,8 +49,6 @@ namespace CodeExamplesTests
             var quickSort = new QuickSort(arr);
             var result = quickSort.Sort();
             Assert.Equal(expected, result);
-
-            int outcome = countOfSort / numberOfTries;
         }
     }
 }

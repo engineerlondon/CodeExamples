@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CodeExamples
+﻿namespace CodeExamples.Searching
 {
     public class BinarySearch
     {
@@ -10,7 +8,7 @@ namespace CodeExamples
             int low = 0;
             while (low <= high)
             {
-                int mid = (low + high) / 2;
+                int mid = (int)((uint)(low + high) / 2);
                 if (valuesToSearch[mid] > valueToFind)
                     high = mid - 1;
                 else if (valuesToSearch[mid] < valueToFind)
