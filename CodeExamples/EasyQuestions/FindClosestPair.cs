@@ -9,31 +9,14 @@ namespace CodeExamples.EasyQuestions
         public static Tuple<int, int> FindClosestPairFromTwoArrays(int[] arr1, int[] arr2, in int target)
         {
             // Modified binary search, if we sort each array at a cost of O(NlogN),
-            // or possibly less using Radix? O(n x m) where m is the length of the count of digits in the largest number
             Array.Sort(arr1);
             Array.Sort(arr2);
 
-            // now modified binary search, if the values combined at the same indices ?
-            // are < our value look in the top half
+            // now modified binary search, if the values combined at the same indices?
 
             for (int i = 0; i < arr1.Length; i++)
             {
                 arr1[i] = target - arr1[i];
-            }
-
-            Tuple<int, int> closest = new Tuple<int, int>(0, 0);
-            int shortestSoFar = int.MaxValue;
-            for (int i = 0; i < arr2.Length; i++)
-            {
-                int dist = arr1[i] - arr2[i];
-                if (dist < 0)
-                    dist *= -1;
-
-                if (dist < shortestSoFar)
-                {
-                    shortestSoFar = dist;
-                    closest = new Tuple<int, int>(target - arr1[i], arr2[i]);
-                }
             }
 
             // Brute Force, O(n^2)

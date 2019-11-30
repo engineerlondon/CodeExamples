@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xunit;
 using CodeExamples.EasyQuestions;
+using Xunit;
 
-namespace CodeExamplesTests.EasyQuestions
+namespace CodeExamplesTests.MediumQuestions
 {
     // https://www.youtube.com/watch?v=GBuHSRDGZBY
     public class FindPairClosestToTargetFromArraysTest
