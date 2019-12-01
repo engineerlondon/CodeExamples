@@ -1,32 +1,32 @@
 ﻿using System;
 using System.Linq;
 using CodeExamples.Sorting;
-using Xunit;
+using NUnit.Framework;
 
-namespace CodeExamplesTests.Sorting
+namespace CodeExamplesTests.SortingTests
 {
-    public class RadixSortTests
+    public class InsertionSortTests
     {
-        [Fact]
-        public void RadixSortSimpleArrayTest()
+        [Test]
+        public void InsertionSortSimpleArrayTest()
         {
             int[] expected = { 10, 14, 22, 1000, 1500, 2000, 2001, 2002, 2003 };
             int[] arr = { 22, 1500, 2001, 2002, 1000, 2000, 2003, 10, 14 };
 
-            var sort = new RadixSort();
+            var sort = new InsertionSort();
 
             var result = sort.Sort(arr);
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
-        [Fact]
-        public void RadixSortLargeRandomArrayTest()
+        [Test]
+        public void InsertionSortMediumSizedRandomArrayTest()
         {
             int Min = int.MinValue;
             int Max = int.MaxValue;
             Random randNum = new Random();
             int[] arr = Enumerable
-                .Repeat(0, 100000)
+                .Repeat(0, 1000)
                 .Select(i => randNum.Next(Min, Max))
                 .ToArray();
 
@@ -34,9 +34,9 @@ namespace CodeExamplesTests.Sorting
             arr.CopyTo(expected, 0);
             Array.Sort(expected);
 
-            var sort = new RadixSort();
+            var sort = new InsertionSort();
             var result = sort.Sort(arr);
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
     }
 }

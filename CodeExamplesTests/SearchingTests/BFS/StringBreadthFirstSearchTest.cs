@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CodeExamples.Searching.BFS;
-using Xunit;
+using NUnit.Framework;
 
-namespace CodeExamplesTests.Searching.BFS
+namespace CodeExamplesTests.SearchingTests.BFS
 {
     public class StringBreadthFirstSearchTest
     {
-        [Fact]
+        [Test]
         public void StringBfsSearchTest()
         {
             var head = new StringBreadthFirstSearch.SimpleNode("bob")
@@ -27,7 +27,7 @@ namespace CodeExamplesTests.Searching.BFS
             StringBreadthFirstSearch bfs = new StringBreadthFirstSearch();
             var result = bfs.Search(head, "Helen");
             var firstChildVal = result.Children.FirstOrDefault().Name;
-            Assert.Equal("Andrew", firstChildVal);
+            Assert.AreEqual("Andrew", firstChildVal);
         }
     }
 }

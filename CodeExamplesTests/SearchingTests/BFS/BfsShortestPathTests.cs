@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using CodeExamples.Searching.BFS;
-using Xunit;
+using NUnit.Framework;
 
-namespace CodeExamplesTests.Searching.BFS
+namespace CodeExamplesTests.SearchingTests.BFS
 {
     public class BfsShortestPathTests
     {
-        [Fact]
+        [Test]
         public void BfsCountShortestPath()
         {
             var alex = new BfsNode.Node<string>("Alex");
@@ -43,10 +43,10 @@ namespace CodeExamplesTests.Searching.BFS
             var bfs = new BfsCountShortestPath();
             var result = bfs.Search(head, "Alex");
             int expected = 2;
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
-        [Fact]
+        [Test]
         public void BfsCountShortestNoChildNodesNoMatchPath()
         {
             BfsNode.Node<string> head = new BfsNode.Node<string>("bob");
@@ -54,10 +54,10 @@ namespace CodeExamplesTests.Searching.BFS
             var bfs = new BfsCountShortestPath();
             var result = bfs.Search(head, "Alex");
             int expected = -1;
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
-        [Fact]
+        [Test]
         public void BfsCountShortestNoChildNodesMatchPath()
         {
             BfsNode.Node<string> head = new BfsNode.Node<string>("bob");
@@ -65,7 +65,7 @@ namespace CodeExamplesTests.Searching.BFS
             var bfs = new BfsCountShortestPath();
             var result = bfs.Search(head, "bob");
             int expected = 0;
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
     }
 }

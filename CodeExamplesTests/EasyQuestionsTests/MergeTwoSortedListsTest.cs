@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using CodeExamples.EasyQuestions;
-using Xunit;
+using NUnit.Framework;
 
-namespace CodeExamplesTests.EasyQuestions
+namespace CodeExamplesTests.EasyQuestionsTests
 {
     public class MergeTwoSortedListsTest
     {
-        [Fact]
+        [Test]
         public void MergeTwoLargeSortedArrays()
         {
             int Min = int.MinValue;
@@ -27,10 +27,10 @@ namespace CodeExamplesTests.EasyQuestions
             int[] result = merge.Merge(arr1, arr2);
 
             Array.Sort(arr);
-            Assert.Equal(arr, result);
+            Assert.AreEqual(arr, result);
         }
 
-        [Fact]
+        [Test]
         public void MergeTwoSmallSimpleArrays()
         {
             int Min = 0;
@@ -50,7 +50,7 @@ namespace CodeExamplesTests.EasyQuestions
             int[] result = merge.Merge(arr1, arr2);
 
             Array.Sort(arr);
-            Assert.Equal(arr, result);
+            Assert.AreEqual(arr, result);
         }
     }
 }
