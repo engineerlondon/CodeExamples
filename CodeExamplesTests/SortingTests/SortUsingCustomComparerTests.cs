@@ -1,12 +1,12 @@
 ﻿using CodeExamples.SortingLargeNumbers;
-using Xunit;
+using NUnit.Framework;
 
-namespace CodeExamplesTests.Sorting
+namespace CodeExamplesTests.SortingTests
 {
     public class SortUsingCustomComparerTests
     {
-        [Fact]
-        public void QuickSortSimplesStringArrayTest()
+        [Test]
+        public void QuickSortSimpleStringArrayTest()
         {
             string[] expected = { "1", "2", "8", "100", "111", "200",
                 "3084193741082937", "3084193741082938", "12303479849857341718340192371" };
@@ -17,7 +17,7 @@ namespace CodeExamplesTests.Sorting
             var sort = new SortUsingCustomComparer();
 
             string[] result = sort.Sort(arr);
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CodeExamples.Searching.BFS;
-using Xunit;
+using NUnit.Framework;
 
-namespace CodeExamplesTests.Searching.BFS
+namespace CodeExamplesTests.SearchingTests.BFS
 {
     public class BreadthFirstSearchTests
     {
-        [Fact]
+        [Test]
         public void BfsStingFindNode()
         {
             BfsNode.Node<string> head = new BfsNode.Node<string>("bob")
@@ -27,10 +27,10 @@ namespace CodeExamplesTests.Searching.BFS
             BreadthFirstSearch bfs = new BreadthFirstSearch();
             var result = bfs.Search(head, "Helen");
             var firstChildVal = result.Children.FirstOrDefault().Name;
-            Assert.Equal("Andrew", firstChildVal);
+            Assert.AreEqual("Andrew", firstChildVal);
         }
 
-        [Fact]
+        [Test]
         public void BfsIntegerFindNode()
         {
             BfsNode.Node<int> head = new BfsNode.Node<int>(1)
@@ -50,7 +50,7 @@ namespace CodeExamplesTests.Searching.BFS
             BreadthFirstSearch bfs = new BreadthFirstSearch();
             var result = bfs.Search(head, 1000);
             var foo = result.Children.FirstOrDefault().Name;
-            Assert.Equal(99, foo);
+            Assert.AreEqual(99, foo);
         }
     }
 }

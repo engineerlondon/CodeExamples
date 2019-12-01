@@ -1,13 +1,13 @@
 using System;
 using System.Linq;
 using CodeExamples.Sorting;
-using Xunit;
+using NUnit.Framework;
 
-namespace CodeExamplesTests.Sorting
+namespace CodeExamplesTests.SortingTests
 {
     public class QuickSortTests
     {
-        [Fact]
+        [Test]
         public void QuickSortSimpleArrayTest()
         {
             int[] expected = { 10, 14, 22, 1000, 1500, 2000, 2001, 2002, 2003 };
@@ -16,10 +16,10 @@ namespace CodeExamplesTests.Sorting
             var quickSort = new QuickSort(arr);
 
             var result = quickSort.Sort();
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
-        [Fact]
+        [Test]
         public void QuickSortSimplesStringArrayTest()
         {
             string[] expected = { "bob", "Carol", "Clair", "Jim", "Zak" };
@@ -28,10 +28,10 @@ namespace CodeExamplesTests.Sorting
             var quickSort = new QuickSortString(arr);
 
             string[] result = quickSort.Sort();
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
-        [Fact]
+        [Test]
         public void QuickSortLargeRandomArrayTest()
         {
             int Min = int.MinValue;
@@ -48,7 +48,7 @@ namespace CodeExamplesTests.Sorting
 
             var quickSort = new QuickSort(arr);
             var result = quickSort.Sort();
-            Assert.Equal(expected, result);
+            Assert.AreEqual(expected, result);
         }
     }
 }

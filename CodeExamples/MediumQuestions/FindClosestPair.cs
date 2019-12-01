@@ -4,31 +4,47 @@ namespace CodeExamples.MediumQuestions
 {
     public class FindClosestPair
     {
-        public static Distance FindClosestPairFromTwoArrays(int[] arr1, int[] arr2, in int target)
+        public static Pair FindClosestPairFromTwoArrays(int[] arr1, int[] arr2, int target)
         {
-            // Modified binary search, if we sort each array at a cost of O(NlogN),
-            //Array.Sort(arr1);
-            //Array.Sort(arr2);
+            // O(nLogn)
+            Array.Sort(arr1);
+            Array.Sort(arr2);
 
-            // now modified binary search, if the values combined at the same indices?
+            int y = 0;
+            int x = arr2.Length - 1;
 
-            //for (int i = 0; i < arr1.Length; i++)
-            //{
-            //    arr1[i] = target - arr1[i];
-            //}
+            var closest = new Pair(arr1[0], arr2[0], target);
+            while (y < arr1.Length && x >= 0)
+            {
+                var thisPair = new Pair(arr1[y], arr2[x], target);
 
+                if (thisPair.DistToTarget == 0)
+                    return thisPair;
+
+                if (thisPair.DistToTarget < closest.DistToTarget)
+                    closest = thisPair;
+
+                if (thisPair.Diff < 0) y++;
+                else x--;
+            }
+
+            return closest;
+        }
+
+        public static Pair FindPairBruteForce(int[] arr1, int[] arr2, int target)
+        {
             //Brute Force, O(n ^ 2)
-            Distance closest = null;
+            Pair closest = null;
             if (arr1.Length > 0 && arr2.Length > 0)
-                closest = new Distance(arr1[0], arr2[0]);
+                closest = new Pair(arr1[0], arr2[0], target);
 
             foreach (var arr1Val in arr1)
             {
                 foreach (var arr2Val in arr2)
                 {
-                    var thisDistance = new Distance(arr1Val, arr2Val);
+                    var thisDistance = new Pair(arr1Val, arr2Val, target);
 
-                    if (closest.GetDistance(target) > thisDistance.GetDistance(target))
+                    if (closest.DistToTarget > thisDistance.DistToTarget)
                     {
                         closest = thisDistance;
                     }

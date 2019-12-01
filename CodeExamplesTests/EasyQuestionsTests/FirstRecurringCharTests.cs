@@ -1,26 +1,26 @@
 ﻿using CodeExamples.EasyQuestions;
-using Xunit;
+using NUnit.Framework;
 
-namespace CodeExamplesTests.EasyQuestions
+namespace CodeExamplesTests.EasyQuestionsTests
 {
     // Question: https://www.youtube.com/watch?v=GJdiM-muYqc
     public class FirstRecurringCharTests
     {
-        [Fact]
+        [Test]
         public void FindFirstRecurringCharTests()
         {
             var result = FirstRecurringChar.FindFirstChar("ABCA");
-            Assert.Equal('A', result);
+            Assert.AreEqual('A', result);
         }
 
-        [Fact]
+        [Test]
         public void FindFirstRecurringCharMultipleReccuringTests()
         {
             var result = FirstRecurringChar.FindFirstChar("BCABA");
-            Assert.Equal('B', result);
+            Assert.AreEqual('B', result);
         }
 
-        [Fact]
+        [Test]
         public void FindFirstRecurringCharNullTests()
         {
             var result = FirstRecurringChar.FindFirstChar("ABC");
