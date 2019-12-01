@@ -7,8 +7,8 @@ namespace CodeExamples.MediumQuestions
         public static Distance FindClosestPairFromTwoArrays(int[] arr1, int[] arr2, in int target)
         {
             // Modified binary search, if we sort each array at a cost of O(NlogN),
-            //Array.Sort(arr1);
-            //Array.Sort(arr2);
+            Array.Sort(arr1);
+            Array.Sort(arr2);
 
             // now modified binary search, if the values combined at the same indices?
 
