@@ -67,8 +67,7 @@ namespace CodeExamplesTests.MediumQuestionsTests
             var target = 500;
 
             var result = FindClosestPair.FindClosestPairFromTwoArrays(arr1, arr2, target);
-            //var expected = FindClosestPair.FindPairBruteForce(arr1, arr2, target);
-            //string foo = "Could use " + expected.First + " " + expected.Second;
+
             //4409 -3910 = 499
             Assert.AreEqual(1, result.DistToTarget);
         }
