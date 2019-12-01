@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MediumQuestions\" />
     <Folder Include="HardQuestions\" />
   </ItemGroup>
 

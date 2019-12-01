@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeExamples.EasyQuestions;
+using CodeExamples.MediumQuestions;
 using Xunit;
 
 namespace CodeExamplesTests.MediumQuestions
@@ -9,6 +10,14 @@ namespace CodeExamplesTests.MediumQuestions
     public class FindPairClosestToTargetFromArraysTest
     {
         [Fact]
+        public void DistanceGetDistaceTest()
+        {
+            var dist = new Distance(20, 9);
+            var target = 20;
+            Assert.Equal(9, dist.GetDistance(target));
+        }
+
+        [Fact]
         public void FindPairClosestTo24FromTwoArraysTest()
         {
             var arr1 = new[] { 1, 3, 8, 2, 9, 2 };
@@ -16,14 +25,8 @@ namespace CodeExamplesTests.MediumQuestions
             var target = 24;
 
             var result = FindClosestPair.FindClosestPairFromTwoArrays(arr1, arr2, target);
-            var expected = new List<Tuple<int, int>>()
-            {
-                new Tuple<int, int>(3, 20),
-                new Tuple<int, int>(20, 3),
-                new Tuple<int, int>(5, 20),
-                new Tuple<int, int>(20, 5)
-            };
-            Assert.Contains(result, expected);
+
+            Assert.Equal(1, result.GetDistance(target));
         }
 
         [Fact]
@@ -34,11 +37,8 @@ namespace CodeExamplesTests.MediumQuestions
             var target = 860;
 
             var result = FindClosestPair.FindClosestPairFromTwoArrays(arr1, arr2, target);
-            var expected = new List<Tuple<int, int>>()
-            {
-                new Tuple<int, int>(800, 20)
-            };
-            Assert.Contains(result, expected);
+
+            Assert.Equal(40, result.GetDistance(target));
         }
     }
 }
