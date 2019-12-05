@@ -56,5 +56,37 @@ namespace CodeExamplesTests.AdventOfCode2019
             int result = container.FindIntThatMatchesRules(145852, 616942);
             Assert.That(result, Is.EqualTo(1767));
         }
+
+        [Test]
+        public void FindIntThatMatchesRulePart2Example1Test()
+        {
+            Day4SecureContainer container = new Day4SecureContainer();
+            int result = container.FindIntThatMatchesRules(112233, 112233, 2);
+            Assert.That(result, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void FindIntThatMatchesRulePart2Example2Test()
+        {
+            Day4SecureContainer container = new Day4SecureContainer();
+            int result = container.FindIntThatMatchesRules(123444, 123444, 2);
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FindIntThatMatchesRulePart2Example3Test()
+        {
+            Day4SecureContainer container = new Day4SecureContainer();
+            int result = container.FindIntThatMatchesRules(111122, 111122, 2);
+            Assert.That(result, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void FindIntThatMatchesRuleActualDataPar2Test()
+        {
+            Day4SecureContainer container = new Day4SecureContainer();
+            int result = container.FindIntThatMatchesRules(145852, 616942, 2);
+            Assert.That(result, Is.EqualTo(1192));
+        }
     }
 }

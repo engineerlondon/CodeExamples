@@ -5,8 +5,10 @@ namespace CodeExamples.AdventOfCode2019
 {
     public class Day4SecureContainer
     {
-        public int FindIntThatMatchesRules(int low, int high)
+        public int FindIntThatMatchesRules(int low, int high, int maxRepeats = 6)
         {
+            int passLenRule = 6;
+
             List<int> solutions = new List<int>();
             int counter = 0;
             /*
@@ -20,20 +22,22 @@ namespace CodeExamples.AdventOfCode2019
             for (int i = low; i <= high; i++)
             {
                 var numAsString = i.ToString();
-                if (numAsString.Length != 6)
+                if (numAsString.Length != passLenRule)
                     continue;
-                var previous = '@';
-                var twoAdjacent = false;
 
-                foreach (var elem in numAsString.ToCharArray())
+                var twoAdjacent = false;
+                int[] elements = new int[10];
+                foreach (var elem in numAsString)
                 {
-                    if (elem == previous)
-                    {
-                        twoAdjacent = true;
-                        break;
-                    }
-                    previous = elem;
+                    elements[elem - 48]++;
                 }
+
+                foreach (var freq in elements)
+                {
+                    if (freq > 1 && freq <= maxRepeats)
+                        twoAdjacent = true;
+                }
+
                 if (!twoAdjacent)
                     continue;
 
