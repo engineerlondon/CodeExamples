@@ -6,7 +6,7 @@ namespace CodeExamplesTests.EasyQuestionsTests
     public class MergeTwoSortedListsTest
     {
         [Test]
-        public void MergeTwoSmallSimpleArrays()
+        public void MergeTwoSortedArraysTest()
         {
             int[] arr1 =
             {
@@ -34,7 +34,6 @@ namespace CodeExamplesTests.EasyQuestionsTests
 
             var merge = new MergeTwoSortedLists();
             int[] result = merge.Merge(arr1, arr2);
-            var foo = string.Join(",", result);
 
             int[] expected =
             {
@@ -53,6 +52,7 @@ namespace CodeExamplesTests.EasyQuestionsTests
                 6245, 6304, 6695, 7088, 7442, 7510, 7631, 7880, 7970, 8118, 8361, 8488, 8586, 8780, 8900, 8948, 9177,
                 9215, 9449, 9700, 9734, 46412230, 46920758
             };
+
             Assert.That(result, Is.EqualTo(expected));
         }
     }
