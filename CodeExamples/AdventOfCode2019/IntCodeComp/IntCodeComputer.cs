@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace CodeExamples.AdventOfCode2019.IntCodeComp
 {
-    public class Day2ProgramAlarm
+    public class IntCodeComputer
     {
         public List<Instruction> InstructionHistory = new List<Instruction>();
 
-        public int[] IntCodeComputer(int[] arr, int systemId = 0)
+        public int[] RunIntCode(int[] arr, int systemId = 0)
         {
             int stepsForward;
             for (int i = 0; i < arr.Length; i += stepsForward)
