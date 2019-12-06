@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
-namespace CodeExamples.AdventOfCode2019
+namespace CodeExamples.AdventOfCode2019.Day6
 {
     public class Day6UniversalOrbitMap
     {
@@ -21,6 +20,13 @@ namespace CodeExamples.AdventOfCode2019
             }
 
             return head;
+        }
+
+        public int CountDistanceBetweenPoints(Node head, string find)
+        {
+            var elem = FindNode(head, find);
+
+            return VisitedDist[elem.Uid];
         }
 
         public int CountTotalOrbits(Node head)
@@ -76,59 +82,5 @@ namespace CodeExamples.AdventOfCode2019
 
             return null;
         }
-
-        public int CountDistanceBetweenPoints(Node head, string find)
-        {
-            var elem = FindNode(head, find);
-
-            return VisitedDist[elem.Uid];
-        }
-    }
-
-    public class ReadInputFromFile
-    {
-        public static IEnumerable<OrbitDesc> ReadFile(FileInfo fi)
-        {
-            if (!fi.Exists)
-                throw new ArgumentException(@"The file {fi.FullName} does not exist.");
-
-            var result = new List<OrbitDesc>();
-            using (TextReader tr = new StreamReader(fi.OpenRead()))
-            {
-                string line;
-                while ((line = tr.ReadLine()) != null)
-                {
-                    string[] parts = line.Split(')');
-                    result.Add(new OrbitDesc(parts[0]) { Orbiter = parts[1] });
-                }
-            }
-
-            return result;
-        }
-    }
-
-    public class OrbitDesc
-    {
-        public OrbitDesc(string center)
-        {
-            Center = center;
-        }
-
-        public string Center { get; }
-        public string Orbiter;
-    }
-
-    public class Node
-    {
-        public Guid Uid = Guid.NewGuid();
-        public List<Node> Orbiters = new List<Node>();
-        public List<Node> Parents = new List<Node>();
-
-        public Node(string center)
-        {
-            Center = center;
-        }
-
-        public string Center { get; }
     }
 }

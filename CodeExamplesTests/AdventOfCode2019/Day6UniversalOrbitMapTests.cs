@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using CodeExamples.AdventOfCode2019;
+using CodeExamples.AdventOfCode2019.Day6;
 using NUnit.Framework;
 
 namespace CodeExamplesTests.AdventOfCode2019
