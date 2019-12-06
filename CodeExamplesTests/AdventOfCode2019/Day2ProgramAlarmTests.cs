@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using CodeExamples.AdventOfCode2019;
+using CodeExamples.AdventOfCode2019.IntCodeComp;
 using NUnit.Framework;
 
 namespace CodeExamplesTests.AdventOfCode2019
