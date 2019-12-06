@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CodeExamples.AdventOfCode2019;
+﻿using CodeExamples.AdventOfCode2019;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace CodeExamplesTests.AdventOfCode2019
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CodeExamples.Sorting
+﻿namespace CodeExamples.Sorting
 {
     public class MergeSort
     {

@@ -16,21 +16,60 @@ namespace CodeExamples.AdventOfCode2019
                 if (instruction.Type == Instruction.ParamMode.Halt)
                     return arr;
 
-                stepsForward = instruction.Size;
-
                 InstructionHistory.Add(instruction);
 
-                if (instruction.Type.Equals(Instruction.ParamMode.Multiply))
-                    arr[instruction.Dest] = instruction.Noun * instruction.Verb;
-                else if (instruction.Type.Equals(Instruction.ParamMode.Add))
-                    arr[instruction.Dest] = instruction.Noun + instruction.Verb;
-                else if (instruction.Type.Equals(Instruction.ParamMode.SetVal))
-                    arr[instruction.Dest] = instruction.Noun;
-                else if (instruction.Type.Equals(Instruction.ParamMode.Output))
-                    Console.WriteLine(instruction.Noun);
+                // re-factor this:
+                stepsForward = ExecuteInstruction(arr, instruction, ref i);
             }
 
             return arr;
+        }
+
+        private static int ExecuteInstruction(int[] arr, Instruction instruction, ref int i)
+        {
+            if (instruction.Type == Instruction.ParamMode.Multiply)
+                arr[instruction.Dest] = instruction.Noun * instruction.Verb;
+            else if (instruction.Type == Instruction.ParamMode.Add)
+                arr[instruction.Dest] = instruction.Noun + instruction.Verb;
+            else if (instruction.Type == Instruction.ParamMode.SetVal)
+                arr[instruction.Dest] = instruction.Noun;
+            else if (instruction.Type == Instruction.ParamMode.Output)
+                Console.WriteLine(instruction.Noun);
+            else if (instruction.Type == Instruction.ParamMode.JumpIfTrue)
+            {
+                if (instruction.Noun != 0)
+                {
+                    instruction.Size = 0;
+                    i = instruction.Verb;
+                }
+            }
+            else if (instruction.Type == Instruction.ParamMode.JumpIfFalse)
+            {
+                if (instruction.Noun == 0)
+                {
+                    instruction.Size = 0;
+                    i = instruction.Verb;
+                }
+            }
+            else if (instruction.Type == Instruction.ParamMode.LessThan)
+            {
+                if (instruction.Noun < instruction.Verb)
+                    arr[instruction.Dest] = 1;
+                else
+                {
+                    arr[instruction.Dest] = 0;
+                }
+            }
+            else if (instruction.Type == Instruction.ParamMode.Equals)
+            {
+                if (instruction.Noun == instruction.Verb)
+                    arr[instruction.Dest] = 1;
+                else
+                {
+                    arr[instruction.Dest] = 0;
+                }
+            }
+            return instruction.Size;
         }
     }
 
@@ -42,6 +81,10 @@ namespace CodeExamples.AdventOfCode2019
             Multiply = 2,
             SetVal = 3,
             Output = 4,
+            JumpIfTrue = 5,
+            JumpIfFalse = 6,
+            LessThan = 7,
+            Equals = 8,
             Halt = 99
         }
 
@@ -57,24 +100,30 @@ namespace CodeExamples.AdventOfCode2019
             if (Type == ParamMode.Halt)
                 return;
 
-            Mode[] instruction = IntegerToIntArray(arr[i]);
+            Mode[] mode = IntegerToIntArray(arr[i]);
 
             if (Type == ParamMode.SetVal)
             {
-                Size = 2;
+                Size = 2; // because systemId is passed in size is just 2.
                 Noun = systemId;
                 Dest = arr[i + 1];
             }
             else if (Type == ParamMode.Output)
             {
                 Size = 2;
-                Noun = instruction[1] == Mode.Immediate ? arr[i + 1] : arr[arr[i + 1]]; ;
+                Noun = mode[1] == Mode.Immediate ? arr[i + 1] : arr[arr[i + 1]];
             }
             else
             {
-                Size = 4;
-                Noun = instruction[0] == Mode.Immediate ? arr[i + 1] : arr[arr[i + 1]];
-                Verb = instruction[1] == Mode.Immediate ? arr[i + 2] : arr[arr[i + 2]];
+                if (Type == ParamMode.JumpIfTrue || Type == ParamMode.JumpIfFalse)
+                    Size = 3;
+                else
+                    Size = 4;
+
+                Noun = mode[0] == Mode.Immediate ? arr[i + 1] : arr[arr[i + 1]];
+                Verb = mode[1] == Mode.Immediate ? arr[i + 2] : arr[arr[i + 2]];
+
+                // The destination is currently always set using Immediate
                 Dest = arr[i + 3];
             }
         }
@@ -93,7 +142,7 @@ namespace CodeExamples.AdventOfCode2019
         public ParamMode Type { get; set; }
 
         public int Dest { get; set; }
-        public int Size { get; }
+        public int Size { get; set; }
 
         public static Mode[] IntegerToIntArray(int i)
         {
