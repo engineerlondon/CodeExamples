@@ -13,8 +13,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int[] input = { 1002, 4, 3, 4, 33 };
             int[] expected = { 1002, 4, 3, 4, 99 };
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input);
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -23,8 +23,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int[] input = { 1101, 100, -1, 4, 0 };
             int[] expected = { 1101, 100, -1, 4, 99 };
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input);
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -34,8 +34,8 @@ namespace CodeExamplesTests.AdventOfCode2019
             int param = 0;
             int[] input = { 3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8 };
             int expected = 0;
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, param);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, param);
             var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -45,8 +45,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int param = 8;
             int[] input = { 3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8 };
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, param);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, param);
             var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
             Assert.That(result, Is.EqualTo(1));
         }
@@ -57,8 +57,8 @@ namespace CodeExamplesTests.AdventOfCode2019
             int param = 0;
             int[] input = { 3, 3, 1108, -1, 8, 3, 4, 3, 99 };
             int expected = 0;
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, param);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, param);
             var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -69,8 +69,8 @@ namespace CodeExamplesTests.AdventOfCode2019
             int param = 8;
             int[] input = { 3, 3, 1108, -1, 8, 3, 4, 3, 99 };
             int expected = 1;
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, param);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, param);
             var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -81,8 +81,8 @@ namespace CodeExamplesTests.AdventOfCode2019
             int param = 7;
             int[] input = { 3, 3, 1107, -1, 8, 3, 4, 3, 99 };
             int expected = 1;
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, param);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, param);
             var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -93,8 +93,8 @@ namespace CodeExamplesTests.AdventOfCode2019
             int param = 1;
             int[] input = { 3, 3, 1105, -1, 9, 1101, 0, 0, 12, 4, 12, 99, 1 };
             int expected = 1;
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, param);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, param);
             var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -106,8 +106,8 @@ namespace CodeExamplesTests.AdventOfCode2019
             int[] input = {
                 3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9 };
             int expected = 0;
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, param);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, param);
             var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -123,8 +123,8 @@ namespace CodeExamplesTests.AdventOfCode2019
                 999, 1105, 1, 46, 1101, 1000, 1, 20, 4, 20, 1105, 1, 46, 98, 99
             };
             int expected = 1000;
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, param);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, param);
             var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -140,8 +140,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         //        999, 1105, 1, 46, 1101, 1000, 1, 20, 4, 20, 1105, 1, 46, 98, 99
         //    };
         //    int expected = 999;
-        //    var opCalc = new Day2ProgramAlarm();
-        //    opCalc.IntCodeComputer(input, param);
+        //    var opCalc = new RunIntCode();
+        //    opCalc.RunIntCode(input, param);
         //    var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
         //    Assert.That(result, Is.EqualTo(expected));
         //}
@@ -175,8 +175,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         //        999, 1105, 1, 46, 1101, 1000, 1, 20, 4, 20, 1105, 1, 46, 98, 99
         //    };
         //    int expected = 1001;
-        //    var opCalc = new Day2ProgramAlarm();
-        //    opCalc.IntCodeComputer(input, param);
+        //    var opCalc = new RunIntCode();
+        //    opCalc.RunIntCode(input, param);
         //    var result = opCalc.InstructionHistory.Last(_ => _.Type == Instruction.ParamMode.Output).Noun;
         //    Assert.That(result, Is.EqualTo(expected));
         //}
@@ -186,8 +186,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int[] input = { 3, 0, 4, 0, 99 };
             int[] expected = { 25, 0, 4, 0, 99 };
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input, 25);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input, 25);
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -230,9 +230,9 @@ namespace CodeExamplesTests.AdventOfCode2019
                 1001, 223, 1, 223, 4, 223, 99, 226
             };
 
-            var opCalc = new Day2ProgramAlarm();
+            var opCalc = new IntCodeComputer();
             //input[0] = 1;
-            opCalc.IntCodeComputer(input, 1);
+            opCalc.RunIntCode(input, 1);
             IEnumerable<Instruction> hist = opCalc.InstructionHistory.Where(_ => _.Type == Instruction.ParamMode.Output);
             var finalOut = hist.Last();
             int forSomeReasonWeGetA3AtTheStartUnexpectedlyButTheResultIsCorrect = 3;
@@ -280,8 +280,8 @@ namespace CodeExamplesTests.AdventOfCode2019
                 1001, 223, 1, 223, 4, 223, 99, 226
             };
 
-            var opCalc = new Day2ProgramAlarm();
-            opCalc.IntCodeComputer(input, 5);
+            var opCalc = new IntCodeComputer();
+            opCalc.RunIntCode(input, 5);
             IEnumerable<Instruction> hist = opCalc.InstructionHistory.Where(_ => _.Type == Instruction.ParamMode.Output);
             var finalOut = hist.Last();
             int result = hist.Sum(_ => _.Noun);

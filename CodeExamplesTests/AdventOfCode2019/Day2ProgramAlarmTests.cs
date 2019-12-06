@@ -13,8 +13,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int[] input = { 1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50 };
             int[] expected = { 3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50 };
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input);
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -23,8 +23,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int[] input = { 1, 0, 0, 0, 99 };
             int[] expected = { 2, 0, 0, 0, 99 };
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input);
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -33,8 +33,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int[] input = { 2, 3, 0, 3, 99 };
             int[] expected = { 2, 3, 0, 6, 99 };
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input);
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -43,8 +43,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int[] input = { 2, 4, 4, 5, 99, 0 };
             int[] expected = { 2, 4, 4, 5, 99, 9801 };
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input);
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -53,8 +53,8 @@ namespace CodeExamplesTests.AdventOfCode2019
         {
             int[] input = { 1, 1, 1, 4, 99, 5, 6, 0, 99 };
             int[] expected = { 30, 1, 1, 4, 2, 5, 6, 0, 99 };
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input);
             Assert.That(result, Is.EqualTo(expected));
         }
 
@@ -72,8 +72,8 @@ namespace CodeExamplesTests.AdventOfCode2019
             };
             input[1] = 12; // noun
             input[2] = 2; // verb
-            var opCalc = new Day2ProgramAlarm();
-            int[] result = opCalc.IntCodeComputer(input);
+            var opCalc = new IntCodeComputer();
+            int[] result = opCalc.RunIntCode(input);
             int outcome = result[0];
             Assert.That(outcome, Is.EqualTo(4090689));
         }
@@ -105,10 +105,10 @@ namespace CodeExamplesTests.AdventOfCode2019
 
                     input[1] = i; // noun
                     input[2] = j; // verb
-                    var opCalc = new Day2ProgramAlarm();
+                    var opCalc = new IntCodeComputer();
                     try
                     {
-                        int[] result = opCalc.IntCodeComputer(input);
+                        int[] result = opCalc.RunIntCode(input);
                         int outcome = result[0];
                         if (outcome == 19690720)
                         {
@@ -119,9 +119,9 @@ namespace CodeExamplesTests.AdventOfCode2019
                             break;
                         }
                     }
-                    catch (Exception e)
+                    catch (IndexOutOfRangeException)
                     {
-                        // we don't care
+                        // we don't care, we are brute forcing the value.
                     }
                 }
             }
@@ -140,8 +140,8 @@ namespace CodeExamplesTests.AdventOfCode2019
 
             inputVerify[1] = noun; //77
             inputVerify[2] = verb; //33
-            var verifyCalc = new Day2ProgramAlarm();
-            int[] verify = verifyCalc.IntCodeComputer(inputVerify);
+            var verifyCalc = new IntCodeComputer();
+            int[] verify = verifyCalc.RunIntCode(inputVerify);
             Assert.That(verify[0], Is.EqualTo(19690720));
             Console.WriteLine(100 * noun + verb);
         }
