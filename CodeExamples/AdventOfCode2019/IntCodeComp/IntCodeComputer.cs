@@ -18,7 +18,6 @@ namespace CodeExamples.AdventOfCode2019.IntCodeComp
 
                 InstructionHistory.Add(instruction);
 
-                // re-factor this:
                 stepsForward = ExecuteInstruction(arr, instruction, ref i);
             }
 
@@ -76,7 +75,7 @@ namespace CodeExamples.AdventOfCode2019.IntCodeComp
                     break;
 
                 default:
-                    throw new ArgumentException($"Un-handled instruction type encountered: {instruction.Type}");
+                    throw new ArgumentException($"Unhandled instruction type encountered: {instruction.Type}");
             }
 
             return instruction.Size;
