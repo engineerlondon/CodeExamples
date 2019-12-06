@@ -25,4 +25,10 @@
     <Folder Include="HardQuestionsTests\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="AdventOfCode2019\InputData\Day6Orbits.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

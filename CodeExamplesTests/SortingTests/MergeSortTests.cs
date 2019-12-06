@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using CodeExamples.Sorting;
 using NUnit.Framework;
 
