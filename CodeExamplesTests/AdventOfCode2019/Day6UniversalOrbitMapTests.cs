@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using CodeExamples.AdventOfCode2019;
 using NUnit.Framework;
 
@@ -65,9 +63,11 @@ namespace CodeExamplesTests.AdventOfCode2019
         [Test]
         public void ImportDataAndSumDirectIndirectOrbitsTest()
         {
+            string filePath = @"AdventOfCode2019/InputData/Day6Orbits.txt";
+
             Day6UniversalOrbitMap map = new Day6UniversalOrbitMap();
             IEnumerable<OrbitDesc> input =
-                ReadInputFromFile.ReadFile(new FileInfo(@"AdventOfCode2019\InputData\Day6Orbits.txt"));
+                ReadInputFromFile.ReadFile(new FileInfo(filePath));
 
             var head = new Node("COM");
 
@@ -111,11 +111,7 @@ namespace CodeExamplesTests.AdventOfCode2019
         [Test]
         public void ImportDataAndFindDistBetweenYouAndSanTest()
         {
-            string filePath = @"AdventOfCode2019\InputData\Day6Orbits.txt";
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                filePath = filePath.Replace("\\", "/");
-            }
+            string filePath = @"AdventOfCode2019/InputData/Day6Orbits.txt";
 
             IEnumerable<OrbitDesc> input =
                 ReadInputFromFile.ReadFile(new FileInfo(filePath));
