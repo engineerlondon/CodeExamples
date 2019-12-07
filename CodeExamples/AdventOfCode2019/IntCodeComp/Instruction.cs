@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CodeExamples.AdventOfCode2019.IntCodeComp
 {
@@ -23,7 +24,7 @@ namespace CodeExamples.AdventOfCode2019.IntCodeComp
             Immediate = 1
         }
 
-        public Instruction(int[] arr, int i, int systemId)
+        public Instruction(int[] arr, int i, Queue<int> inputs)
         {
             Type = SetParamMode(arr[i]);
             if (Type == ParamMode.Halt)
@@ -34,7 +35,11 @@ namespace CodeExamples.AdventOfCode2019.IntCodeComp
             if (Type == ParamMode.SetVal)
             {
                 Size = 2; // because systemId is passed in size is just 2.
-                Noun = systemId;
+                if (inputs.Count == 1)
+                    Noun = inputs.Peek();
+                else
+                    Noun = inputs.Dequeue();
+
                 Dest = arr[i + 1];
             }
             else if (Type == ParamMode.Output)

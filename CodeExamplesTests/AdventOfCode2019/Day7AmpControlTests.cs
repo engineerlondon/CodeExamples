@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CodeExamples.AdventOfCode2019;
+using CodeExamples.AdventOfCode2019.Day6;
 using NUnit.Framework;
 
 namespace CodeExamplesTests.AdventOfCode2019
@@ -66,18 +67,22 @@ namespace CodeExamplesTests.AdventOfCode2019
                 2, 9, 9, 4, 9, 3, 9, 101, 1, 9, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9,
                 1001, 9, 2, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 99
             };
+
             List<int> phaseSettingInput = new List<int> { 0, 1, 2, 3, 4 }; // each phase setting is used exactly once
+
             int largest = 0;
-            for (int i = 0; i < 4; i++)
+            var enumerate = phaseSettingInput.Permutate();
+            using (var enumeratePerms = enumerate.GetEnumerator())
             {
-                int lhs = phaseSettingInput.First();
-                int result = ampControl.SendPowerToThrusters(phaseSettingInput.ToArray(), input);
-                if (result > largest)
-                    largest = result;
-                phaseSettingInput.Add(lhs);
+                while (enumeratePerms.MoveNext())
+                {
+                    int result = ampControl.SendPowerToThrusters(enumeratePerms.Current.ToArray(), input);
+                    if (result > largest)
+                        largest = result;
+                }
             }
 
-            Assert.That(largest, Is.EqualTo(65210));
+            Assert.That(largest, Is.EqualTo(87138));
         }
     }
 }

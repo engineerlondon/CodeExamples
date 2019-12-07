@@ -9,10 +9,17 @@ namespace CodeExamples.AdventOfCode2019.IntCodeComp
 
         public int[] RunIntCode(int[] arr, int systemId = 0)
         {
+            var queue = new Queue<int>();
+            queue.Enqueue(systemId);
+            return RunIntCode(arr, queue);
+        }
+
+        public int[] RunIntCode(int[] arr, Queue<int> inputs)
+        {
             int stepsForward;
             for (int i = 0; i < arr.Length; i += stepsForward)
             {
-                var instruction = new Instruction(arr, i, systemId);
+                var instruction = new Instruction(arr, i, inputs);
                 if (instruction.Type == Instruction.ParamMode.Halt)
                     return arr;
 
